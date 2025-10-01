@@ -1,30 +1,30 @@
-# yaml
 name: CI Pipeline
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push,pull_request]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Debug repo layout
+        run: |
+          pwd
+          ls -la
+          find . -maxdepth 3 -name pom.xml || true
 
       - name: Set up JDK 24
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '24'
 
-                                     
-   
+      - name: Build (if pom.xml is at repo root)
+        run: mvn -B -f ./pom.xml clean verify --batch-mode
 
-      - name: Build and run unit + integration tests
-        run: mvn -B clean verify --batch-mode
-        # If your pom.xml is NOT at the repository root, uncomment and set the correct relative path:
-        # working-directory: path/to/project
+      # OR, if pom.xml is in a subfolder e.g. `backend`
+      #- name: Build (module)
+      #  working-directory: backend
+      #  run: mvn -B clean verify --batch-mode
