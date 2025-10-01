@@ -39,11 +39,11 @@ jobs:
 
       - name: Build with Maven
         run : mvn clean install -B
-        working-directory: ./Software-Testing-and-Quality-for-Spring-Boot
+        working-directory: ./fiteasy/fiteasy
 
       - name: Run unit and automation tests
         run: mvn test
-        working-directory: ./Software-Testing-and-Quality-for-Spring-Boot
+        working-directory: ./fiteasy/fiteasy
 
       - name: Upload test reports (optional)
         if: always()
