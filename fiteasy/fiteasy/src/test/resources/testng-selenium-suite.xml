@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="FitEasy Selenium UI Test Suite">
+    
+    <test name="Login UI Tests">
+        <classes>
+            <class name="com.fiteasy.selenium.tests.LoginUITest"/>
+        </classes>
+    </test>
+    
+    <test name="Workout Plan UI Tests">
+        <classes>
+            <class name="com.fiteasy.selenium.tests.WorkoutPlanUITest"/>
+        </classes>
+    </test>
+    
+</suite>
