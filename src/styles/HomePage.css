@@ -1,0 +1,286 @@
+body {
+   margin: 0; 
+  font-family: Arial, sans-serif;
+  background-color: #e59eff;
+}
+
+.container {
+  
+  padding: 120px;
+  text-align: center;
+  border: 15px solid #802f90;
+  background-color: #f0aaff;
+  position: relative;
+ 
+}
+
+.subtext
+{
+  position: absolute;
+  top: 100px;
+  left: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-align: left;
+  line-height: 1.2;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.curve-container {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  margin: 0% auto;
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom:- 200px;
+ 
+}
+
+/* All images default style */
+.curve-img {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+}
+
+
+.curve-img:hover {
+  transform: scale(1.1);
+}
+
+
+.barbellbiceps {
+  top: 120px;
+  left: -300px;
+  transform: rotate(-25deg);
+}
+
+.bububububear {
+  top: 40px;
+  left: -80px;
+  transform: rotate(-12deg);
+}
+
+.pengupudgy {
+  top: 20px;
+  left: center;
+  transform: rotate(0deg);
+}
+
+.tkthaobubududu {
+  top: 40px;
+  right: -80px;
+  transform: rotate(12deg);
+}
+
+.tkbubududu {
+  top: 120px;
+  right: -300px;
+  transform: rotate(25deg);
+}
+
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0px;
+  margin-top: -100px;
+  
+}
+
+nav button {
+  background-color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+   margin-bottom: 0px;
+  margin-top: 0px;
+  
+}
+nav button:hover {
+  background-color: #f0f0f0;
+  box-shadow: 2px 6px 10px rgba(235, 20, 20, 0.3);
+}
+
+.title {
+  font-size: 60px;
+  color: #c734c7;
+  font-family: cursive;
+  margin: 10px 10px;
+  margin-top: -180px;
+}
+
+.subtitle {
+  margin-top: 40px;
+  font-size: 40px;
+  font-weight: bold;
+  color: red;
+}
+
+.section-title {
+  padding: 15px 40px;
+  border-radius: 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 40px;
+  color: black;
+
+}
+
+.section-description {
+  font-size:20px;
+  margin-top: 5px;
+  color: #111;
+  font-weight: bold;
+}
+
+.image-row {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.image-row img {
+  width: 280px;
+  height: 280px;
+  object-fit:fill;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.description-text {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  font-size: 20px;
+  text-align: justify;  
+  color: #333;
+  margin-top: 20px;
+}
+
+.recipe-title {
+  margin-top: 40px;
+  font-size: 50px;
+  font-weight: bold;
+  color: red;
+}
+
+.recipe-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: 30px auto;
+}
+
+.recipe-item {
+  text-align: center;
+}
+
+.recipe-item img {
+  width: 130px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.recipe-item p {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #111;
+}
+
+.sectionh h2 {
+  margin-top: 55px;
+  font-size: 40px;
+  font-weight: bold;
+  color: red;
+}
+
+.tips-section {
+  background-color: #ee83f4ff;
+  padding: 10px 10px;
+  margin-top: 40px;
+  margin-bottom: 250px;
+}
+
+.tips-section p {
+  max-width: 1200px;
+  margin: 10px auto ;
+  font-size: 20px;
+  text-align: left;
+  color: #000;
+}
+
+
+footer {
+  background-color: #4c1866;
+  color: white;
+  padding: 30px 200px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+footer h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+footer p {
+  margin: 10px auto;
+  max-width: 600px;
+  font-size: 13px;
+}
+
+footer button {
+  background-color: white;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.footer-bottom {
+    font-size: 12px;
+    margin-top: 30px;
+  }
+
+
+.footer-links {
+  margin-top: 20px;
+  font-size: 13px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  margin-top: 20px;
+}
