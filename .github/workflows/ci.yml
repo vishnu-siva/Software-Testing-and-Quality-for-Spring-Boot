@@ -2,13 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
-      - master
+    branches: [ main ]
 
 jobs:
   build-and-test:
@@ -21,11 +17,22 @@ jobs:
       - name: Set up JDK 24
         uses: actions/setup-java@v4
         with:
-          java-version: '24'
           distribution: 'temurin'
+          java-version: '24'
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
 
       - name: Build with Maven
-        run: mvn clean install -B
+        run: mvn clean install --batch-mode
 
-      - name: Run unit and automation tests
-        run: mvn test
+      - name: Run Unit and Automation Tests
+        run: mvn test --batch-mode
+
+      - name: Run Integration (Selenium) Tests
+        run: mvn failsafe:integration-test failsafe:verify --batch-mode
