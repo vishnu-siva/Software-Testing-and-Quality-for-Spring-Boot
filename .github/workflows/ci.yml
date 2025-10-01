@@ -31,5 +31,5 @@ jobs:
 
       - name: Build and run tests (unit + integration)
         run: mvn -B clean verify --batch-mode
-        # If your pom.xml is in a subfolder, uncomment and set the relative path:
-        # working-directory: my-subfolder
+        # If your `pom.xml` is in a subfolder, uncomment and set the relative path:
+        # working-directory: my-submodule
