@@ -30,12 +30,9 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install --batch-mode
-        working-directory: ./Software-Testing-and-Quality-for-Spring-Boot
 
       - name: Run Unit and Automation Tests
         run: mvn test --batch-mode
-        working-directory: ./Software-Testing-and-Quality-for-Spring-Boot
 
       - name: Run Integration (Selenium) Tests
         run: mvn failsafe:integration-test failsafe:verify --batch-mode
-        working-directory: ./Software-Testing-and-Quality-for-Spring-Boot
