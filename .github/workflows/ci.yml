@@ -29,7 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: Build and run tests (unit + integration)
+      - name: Build and run unit + integration tests
         run: mvn -B clean verify --batch-mode
-        # If your `pom.xml` is in a subfolder, uncomment and set the relative path:
-        # working-directory: my-submodule
+        # If your pom.xml is NOT at the repository root, uncomment and set the correct relative path:
+        # working-directory: path/to/project
