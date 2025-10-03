@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: fiteasy
 
     steps:
       - name: Checkout code
@@ -29,4 +32,4 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Build and run tests
-        run: mvn -B verify --file pom.xml
+        run: mvn -B verify
