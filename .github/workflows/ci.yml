@@ -30,3 +30,24 @@ jobs:
 
       - name: Build and run tests
         run: mvn -B verify --file pom.xml
+       
+  build-frontend:
+    runs-on: ubuntu-latest
+    # Set the default directory for the frontend job
+    defaults:
+      run:
+        working-directory: audioh-frontend
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies and build
+        run: |
+          npm install
+          npm run build
