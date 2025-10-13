@@ -4,6 +4,8 @@ import com.fiteasy.model.User;
 import com.fiteasy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -98,6 +100,25 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getUserById(@PathVariable Long id) {
         try {
+            // Get the authenticated user
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String authenticatedUsername = authentication.getName();
+            
+            // Get the authenticated user's details
+            Optional<User> authenticatedUser = userService.findByUsername(authenticatedUsername);
+            if (!authenticatedUser.isPresent()) {
+                Map<String, String> error = new HashMap<>();
+                error.put("message", "Authentication failed");
+                return ResponseEntity.status(401).body(error);
+            }
+            
+            // Check if the authenticated user is trying to access their own data
+            if (!authenticatedUser.get().getId().equals(id)) {
+                Map<String, String> error = new HashMap<>();
+                error.put("message", "Access denied: You can only access your own data");
+                return ResponseEntity.status(403).body(error);
+            }
+            
             Optional<User> user = userService.getUserById(id);
             if (user.isPresent()) {
                 return ResponseEntity.ok(user.get());
