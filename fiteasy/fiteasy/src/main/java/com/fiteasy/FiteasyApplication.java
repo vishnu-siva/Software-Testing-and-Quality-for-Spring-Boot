@@ -26,7 +26,7 @@ public class FiteasyApplication {
 				registry.addMapping("/api/**")
 						.allowedOrigins("http://localhost:3000")
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-						.allowedHeaders("*")
+						.allowedHeaders("Authorization", "Content-Type", "Accept")
 						.allowCredentials(true);
 			}
 		};
