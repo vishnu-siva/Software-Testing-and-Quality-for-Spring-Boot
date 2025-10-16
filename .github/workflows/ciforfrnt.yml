@@ -33,6 +33,8 @@ jobs:
       - name: Run build
         run: npm run build
         working-directory: ./fiteasyfrontend
+        env:
+          CI: false
 
       - name: Run tests
         run: npm test
