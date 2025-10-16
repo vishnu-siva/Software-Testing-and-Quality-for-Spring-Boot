@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { workoutAPI } from '../utils/api';
 import '../styles/WorkoutPlan.css';
@@ -24,6 +24,26 @@ const WorkoutPlan = ({ userId, onLogout }) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
+  const calculateBMI = useCallback((height, weight) => {
+    if (!height || !weight) return null;
+    const h = height / 100;
+    return (weight / (h * h)).toFixed(1);
+  }, []);
+
+  const fetchWorkoutPlans = useCallback(async () => {
+    try {
+      const res = await fetch('/api/workout-plans');
+      const data = await res.json();
+      setWorkoutPlans(data);
+    } catch (err) {
+      console.error(err);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchWorkoutPlans();
+  }, [fetchWorkoutPlans]);
+
   useEffect(() => {
     if (userId) {
       fetchWorkoutPlans();
@@ -36,55 +56,6 @@ const WorkoutPlan = ({ userId, onLogout }) => {
       calculateBMI();
     }
   }, [workoutData.height, workoutData.weight]);
-
-  const fetchWorkoutPlans = async () => {
-    try {
-      const response = await workoutAPI.getWorkoutPlansByUser(userId);
-      setWorkoutPlans(response);
-      
-      // Load the latest workout plan data if available
-      if (response.length > 0) {
-        const latest = response[0];
-        setWorkoutData({
-          dateCreated: latest.dateCreated || '',
-          age: latest.age || '',
-          gender: latest.gender || '',
-          height: latest.height || '',
-          weight: latest.weight || '',
-          trainer: latest.trainer || '',
-          gymName: latest.gymName || '',
-          spentTimeInGym: latest.spentTimeInGym || '',
-          workOut: latest.workOut || '',
-          repsSets: latest.repsSets || ''
-        });
-        
-        if (latest.bmiData) {
-          setBmiResult({
-            bmi: latest.bmiData,
-            category: getBMICategory(parseFloat(latest.bmiData))
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching workout plans:', error);
-      setError('Failed to load workout plans');
-    }
-  };
-
-  const calculateBMI = async () => {
-    if (!workoutData.height || !workoutData.weight) return;
-    
-    try {
-      const response = await workoutAPI.calculateBMI(
-        parseFloat(workoutData.height),
-        parseFloat(workoutData.weight)
-      );
-      setBmiResult(response);
-    } catch (error) {
-      console.error('Error calculating BMI:', error);
-      setError('Error calculating BMI');
-    }
-  };
 
   const getBMICategory = (bmi) => {
     if (bmi < 18.5) return 'Underweight';

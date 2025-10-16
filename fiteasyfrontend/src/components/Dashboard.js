@@ -1,39 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { userAPI } from '../utils/api';
 import '../styles/Dashboard.css';
 
-const Dashboard = ({ userId, onLogout }) => {
+const Dashboard = () => {
   const navigate = useNavigate();
-  const [counts, setCounts] = useState({
-    userDetails: 0,
-    bmiResults: 0,
-    workoutPlans: 0
-  });
+  const [counts, setCounts] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    if (userId) {
-      fetchCounts();
-    }
-  }, [userId]);
-
-  const fetchCounts = async () => {
+  const fetchCounts = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await userAPI.getDashboardCounts(userId);
-      setCounts(response);
-    } catch (error) {
-      console.error('Error fetching counts:', error);
-      setError('Failed to load dashboard data');
-    } finally {
-      setLoading(false);
+      const res = await fetch('/api/counts');
+      const data = await res.json();
+      setCounts(data);
+    } catch (err) {
+      console.error(err);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    fetchCounts();
+  }, [fetchCounts]);
 
   const handleLogout = () => {
-    onLogout();
     navigate('/');
   };
 
