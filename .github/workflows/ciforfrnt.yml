@@ -9,24 +9,27 @@ on:
 jobs:
   build-frontend:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: audioh-frontend
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Show repo contents (debug)
+        run: ls -la
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '18'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+        working-directory: ./audioh-frontend
 
       - name: Run build
         run: npm run build
+        working-directory: ./audioh-frontend
 
       - name: Run tests
         run: npm test
+        working-directory: ./audioh-frontend
