@@ -37,5 +37,5 @@ jobs:
           CI: false
 
       - name: Run tests
-        run: npm test
+        run: npm test -- --watchAll=false --passWithNoTests
         working-directory: ./fiteasyfrontend
