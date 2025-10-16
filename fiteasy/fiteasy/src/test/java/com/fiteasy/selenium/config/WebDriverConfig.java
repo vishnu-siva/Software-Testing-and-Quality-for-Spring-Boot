@@ -50,12 +50,18 @@ public class WebDriverConfig {
         // Avoid window maximize timeout
         options.addArguments("--start-maximized");
         
+        // Add unique user-data-dir to avoid session conflicts in CI/CD
+        String userDataDir = "/tmp/chrome-user-data-" + System.currentTimeMillis();
+        options.addArguments("--user-data-dir=" + userDataDir);
+        
         // Disable Chrome DevTools Protocol to avoid version warnings
         options.addArguments("--disable-dev-tools");
         options.setExperimentalOption("useAutomationExtension", false);
         
-        // For headless mode (uncomment if needed for CI/CD)
-        // options.addArguments("--headless");
+        // Enable headless mode for CI/CD environments
+        if (isHeadlessMode()) {
+            options.addArguments("--headless=new");
+        }
         
         // Configure Chrome service with longer timeout
         ChromeDriverService service = new ChromeDriverService.Builder()
@@ -81,5 +87,10 @@ public class WebDriverConfig {
     
     public static WebDriverWait createWebDriverWait(WebDriver driver, int timeoutSeconds) {
         return new WebDriverWait(driver, Duration.ofSeconds(timeoutSeconds));
+    }
+    
+    private static boolean isHeadlessMode() {
+        return System.getProperty("selenium.headless", "false").equalsIgnoreCase("true") ||
+               System.getenv("CI") != null;
     }
 }
