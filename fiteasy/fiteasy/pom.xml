@@ -148,10 +148,10 @@
                         <include>**/*Test.java</include>
                         <include>**/*Tests.java</include>
                     </includes>
-                    <!-- Temporarily include Selenium tests for debugging -->
-                    <!--excludes>
+                    <!-- Exclude Selenium tests from surefire (unit tests) -->
+                    <excludes>
                         <exclude>**/selenium/**/*Test.java</exclude>
-                    </excludes-->
+                    </excludes>
                     <!-- Use TestNG for Selenium tests -->
                     <properties>
                         <property>
