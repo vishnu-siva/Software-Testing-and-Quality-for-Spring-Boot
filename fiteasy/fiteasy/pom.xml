@@ -33,6 +33,7 @@
         <maven.compiler.release>24</maven.compiler.release>
         <mockito.version>5.17.0</mockito.version>
         <junit.version>5.12.2</junit.version>
+        <skipSeleniumTests>false</skipSeleniumTests>
     </properties>
     <dependencies>
         <dependency>
@@ -166,6 +167,7 @@
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>3.5.3</version>
                 <configuration>
+                    <skip>${skipSeleniumTests}</skip>
                     <includes>
                         <include>**/selenium/**/*Test.java</include>
                     </includes>
