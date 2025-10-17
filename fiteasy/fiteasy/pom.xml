@@ -34,10 +34,9 @@
         <mockito.version>5.17.0</mockito.version>
         <junit.version>5.12.2</junit.version>
         <skipSeleniumTests>false</skipSeleniumTests>
-    </properties>
-    <properties>
         <sonar.organization>vishnu-siva</sonar.organization>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
