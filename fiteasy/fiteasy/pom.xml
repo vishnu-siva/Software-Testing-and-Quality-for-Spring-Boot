@@ -34,7 +34,7 @@
         <mockito.version>5.17.0</mockito.version>
         <junit.version>5.12.2</junit.version>
         <skipSeleniumTests>false</skipSeleniumTests>
-        <sonar.organization>vishnu-siva</sonar.organization>
+        <sonar.organization>vishnu-siva</sonar.organization> 
     </properties>
 
     <dependencies>
